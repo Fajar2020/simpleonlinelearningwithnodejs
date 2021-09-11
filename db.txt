@@ -1,0 +1,46 @@
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	username VARCHAR (150) UNIQUE NOT NULL,
+	password VARCHAR (255) NOT NULL,
+	isAdmin boolean,
+	salt VARCHAR (255) NOT NULL,
+	is_deleted boolean
+);
+
+CREATE TABLE courses (
+	id serial PRIMARY KEY,
+	name VARCHAR (150) UNIQUE NOT NULL,
+	description VARCHAR (255),
+	thumbnail VARCHAR (255),
+	teacher_id INT NOT NULL,
+	category_id INT NOT NULL,
+	price VARCHAR (10) DEFAULT '0',
+	update_at TIMESTAMP, 
+	update_by INT NOT NULL
+);
+
+CREATE TABLE teachers (
+	id serial PRIMARY KEY,
+	name VARCHAR (150) UNIQUE NOT NULL,
+	update_at TIMESTAMP, 
+	update_by INT NOT NULL
+);
+
+
+CREATE TABLE categories (
+	id serial PRIMARY KEY,
+	name VARCHAR (150) UNIQUE NOT NULL,
+	update_at TIMESTAMP, 
+	update_by INT NOT NULL
+);
+
+CREATE TABLE resources (
+	id serial PRIMARY KEY,
+	course_id INT NOT NULL,
+	title VARCHAR (150) UNIQUE NOT NULL,
+	description VARCHAR (255),
+	file_resource VARCHAR (255),
+	queue NUMERIC,
+	update_at TIMESTAMP, 
+	update_by INT NOT NULL
+);
